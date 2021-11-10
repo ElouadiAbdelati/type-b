@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 
 class RegisterController extends Controller
 {
@@ -29,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo ="/email/verify";
 
     /**
      * Create a new controller instance.
@@ -48,12 +49,17 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
+    {       $message = array(
+           'email.regex' => "Cet e-mail n'est pas pour uca"
+          );
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'prenom' => ['required', 'string', 'max:255'],
+            'profession' => ['required', 'string', 'max:255'],
+            'tel' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users','regex:/@uca/'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        ],$message);
     }
 
     /**
@@ -64,10 +70,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user= User::create([
             'name' => $data['name'],
+            'prenom' => $data['prenom'],
+            'profession' => $data['profession'],
+            'tel' => $data['tel'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        $userRole = Role::findByName('user');
+        
+        if(!$userRole)$userRole = Role::create(['name' => 'user']);
+        
+        $user->assignRole($userRole);
+        return $user;
     }
+
+ 
 }

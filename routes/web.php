@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +24,16 @@ Route::get('/admin_edit_form', function () {
     return view('admin_edit_demande');
 });
 
-Auth::routes();
+Route::get('/email/verify', function () {
+    return view('auth/verify');
+});
 
+Auth::routes(['verify' => true]);
+
+
+Route::middleware(['verified'])->group(function () {
+    Route::get('/dashboard-user', [App\Http\Controllers\DashboardUser::class, 'index'])->name('dashboard.user');
+    Route::get('/dashboard-user/create-request', [App\Http\Controllers\DashboardUser::class, 'createRequest'])->name('create.request.form');
+    Route::post('/dashboard-user/create-request', [App\Http\Controllers\DashboardUser::class, 'createRequest'])->name('create.request.store');
+});
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
