@@ -45,7 +45,7 @@
         <ul>
           
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="{{ route('dashboard.user') }}">Commencer</a></li>
+          <li><a class="getstarted scrollto" href="{{ route('dashboard.user') }}">Dashboard</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -64,7 +64,7 @@
           <div data-aos="fade-up" data-aos-delay="600">
             <div class="text-center text-lg-start">
               <a href="{{ route('dashboard.user') }}" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                <span>Commencer</span>
+                <span>Dashboard</span>
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>

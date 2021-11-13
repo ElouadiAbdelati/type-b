@@ -15,9 +15,11 @@ class Manifestation extends Model
         'lieu',
         'site_web',
         'agence_organisatrice',
-        'pertenaires',
+        'partenaires',
         'nbr_participants_prevus',
         'date_debut',
         'date_fin',
+        'entite_organisatrice_id',
+      
     ];
 }
