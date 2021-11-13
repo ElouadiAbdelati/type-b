@@ -5,17 +5,22 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-                <div class="login-brand">
-                    <img src="{{asset('/assets/img/uca.jpg')}}" alt="logo" width="100" class="shadow-light rounded-circle">
-                </div>
+
 
                 <div class="card card-primary">
-                    <div class="card-header">
-                        <h4>réinitialiser le mot de passe</h4>
+                    <div class="login-brand">
+                        <img src="../assets/img/uca.jpg" alt="logo" width="100" class="mt-2 center">
                     </div>
 
+                    <div class="mr-3 ml-3">
+                        <h4 style="color: #a34f23"> Réinitialiser votre mot de passe </h4>
+                        <p class="text-muted">Nous vous envoyerons un lien pour réinitialiser votre mot de passe.</p>
+
+
+                    </div>
+
+
                     <div class="card-body">
-                        <p class="text-muted">Nous vous enverrons un lien pour réinitialiser votre mot de passe</p>
                         @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -38,16 +43,13 @@
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                    réinitialiser le mot de passe
+                                    Réinitialiser
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div class="simple-footer">
-                    <div class="simple-footer">Copyright &copy; Made with 💙 by EL OUADI,KHADIM ELAIMANI
-
-                    </div>
+                <div class="simple-footer">Copyright &copy; Made with 🧡 by EL OUADI, KHADIM and EL AIMANI
                 </div>
             </div>
         </div>
