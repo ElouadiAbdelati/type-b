@@ -12,13 +12,43 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
+    <!-- CSS Libraries -->
+
     <!-- Template CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
 </head>
 
 <body>
     <div id="app">
         <div class="navbar-bg"></div>
+      <!--  <nav class="navbar navbar-expand-lg main-navbar">
+            <ul class="navbar-nav navbar-right">
+                <li class="dropdown"><a href="#" data-toggle="dropdown"
+                        class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                        <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+                        <div class="d-sm-none d-lg-inline-block">Admin</div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+
+                        <a href="features-settings.html" class="dropdown-item has-icon">
+                            <i class="fas fa-cog"></i> Settings
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item has-icon text-danger">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </nav> -->
+        <div class="main-sidebar">
+            <aside id="sidebar-wrapper">
+                <div class="sidebar-brand">
+                    <a href="{{route('dashboard.admin')}}">uca</a>
+                </div>
+            </aside>
+        </div>
         <!-- ------------------------------- MAIN ---------------------------- -->
         <div class="main-content">
             <section class="section mr-5">
@@ -29,8 +59,13 @@
                     <div class="d-inline"><label for="">Type: </label>&nbsp;<span> $manif->type </span></div>
                     <div class="d-inline"><label for="">Lieu: </label>&nbsp;<span> $manif->lieu </span></div>
                     <div class="d-inline"><label for="">Date reçue: </label>&nbsp;<span> 14/11/2021</span></div>
-                    <div class="d-inline"></span></div>
-
+                    <div class="d-inline">
+                        <span>
+                            <a href="{{ url('admin_edit_form') }}" title="Retour en arrière">
+                                <i class="fa fa-reply fa-lg"></i>
+                            </a>
+                        </span>
+                    </div>
                 </div>
 
                 <div class="section-body">
@@ -38,7 +73,7 @@
                         <div class="col-12 col-sm-12 col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Modofocation du montant sollicité</h4>
+                                    <h4>Modification du montant sollicité</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -80,7 +115,7 @@
         <!-- ----------------------------------- END MAIN ----------------------------- -->
         <footer class="main-footer">
             <div class="footer-right">
-                Copyright &copy; 2021 Made with 💙 by EL OUADI,KHADIM & EL AIMANI
+                Copyright &copy; Made with 🧡 by EL OUADI, KHADIM and EL AIMANI
             </div>
         </footer>
     </div>
@@ -93,12 +128,18 @@
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-        <script src="../assets/js/stisla.js">
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="../assets/js/stisla.js"></script>
+
+    <!-- JS Libraies -->
 
     <!-- Template JS File -->
     <script src="../assets/js/scripts.js"></script>
     <script src="../assets/js/custom.js"></script>
+
+    <!-- Page Specific JS File -->
 
 
 </body>

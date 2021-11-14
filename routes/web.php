@@ -42,10 +42,11 @@ Auth::routes(['verify' => true]);
 // });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard-admin', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard.admin');
 //******Admin's routes********
-Route::group(['middleware' => 'verified'], function () {
+/*Route::group(['middleware' => 'verified'], function () {
     Route::get('/dashboard-admin', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard.admin');
     Route::get('/admin_edit_form', function () {
-        return view('admin_edit_demande');
+        return view('admin/edit_demande');
     });
-});
+});*/

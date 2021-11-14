@@ -13,7 +13,7 @@ class AdminsController extends Controller
     public function getManifestation()
     {
         $manif = Manifestation::first();
-        return view('admin_edit_demande',['manif'=>$manif]);
+        return view('admin/edit_demande',['manif'=>$manif]);
     }
 
     public function delete(Request $request){
@@ -30,6 +30,6 @@ class AdminsController extends Controller
     }
 
     public function getManifestationDetails(){
-        return view('manif_details');
+        return view('admin/manif_details');
     }
 }

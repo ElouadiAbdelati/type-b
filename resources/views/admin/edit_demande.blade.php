@@ -1,6 +1,6 @@
 @extends('layouts.main_admin')
 
-@section('contenue')
+@section('content')
 <section class="section">
     <div class="section-header d-flex justify-content-between pl-2 pr-3">
         @if ($manif != null )
