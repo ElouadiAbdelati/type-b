@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Exception;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -30,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo ="/email/verify";
+    protected $redirectTo = "/email/verify";
 
     /**
      * Create a new controller instance.
@@ -49,17 +50,18 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {       $message = array(
-           'email.regex' => "Cet e-mail n'est pas pour uca"
-          );
+    {
+        $message = array(
+            'email.regex' => "Cet e-mail n'est pas pour uca"
+        );
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'prenom' => ['required', 'string', 'max:255'],
             'profession' => ['required', 'string', 'max:255'],
             'tel' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users','regex:/@uca/'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'regex:/@uca/'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ],$message);
+        ], $message);
     }
 
     /**
@@ -70,7 +72,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user= User::create([
+        $user = User::create([
             'name' => $data['name'],
             'prenom' => $data['prenom'],
             'profession' => $data['profession'],
@@ -78,13 +80,19 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        $userRole = Role::findByName('user');
-        
-        if(!$userRole)$userRole = Role::create(['name' => 'user']);
-        
-        $user->assignRole($userRole);
-        return $user;
-    }
 
- 
+
+        try {
+            
+            $userRole = Role::findByName('user');
+            $user->assignRole($userRole);
+            return $user;
+
+        } catch (Exception) {
+
+            $userRole = Role::create(['name' => 'user']);
+            $user->assignRole($userRole);
+            return $user;
+        }
+    }
 }

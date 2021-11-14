@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>accueil</title>
+  <title>Accueil</title>
   <meta content="" name="description">
 
   <meta content="" name="keywords">
@@ -36,16 +36,31 @@
   <header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="{{ url('/') }}" class="logo d-flex align-items-center">
         <img src="{{asset('assets/img/uca-logo.png')}}" alt="">
-        
+
       </a>
 
       <nav id="navbar" class="navbar">
         <ul>
-          
+
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="{{ route('dashboard.user') }}">Commencer</a></li>
+          @if (Route::has('login'))
+
+          @auth
+          <li><a class="nav-link scrollto" href="{{ url('/') }}">Acceuil</a></li>
+
+          @else
+          <li><a class="nav-link scrollto" href="{{ route('login') }}">Connexion</a></li>
+
+          @if (Route::has('register'))
+          <li><a class="nav-link scrollto" href="{{ route('register') }}">S'inscrire</a></li>
+
+          @endif
+          @endauth
+
+          @endif
+          <li><a class="getstarted scrollto" href="{{ route('dashboard.admin') }}">Commencer</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -60,11 +75,11 @@
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center">
           <h1 data-aos="fade-up">Organisation de manifestations scientifiques</h1>
-          <h2 data-aos="fade-up" data-aos-delay="400">	La manifestation (ou au moins une partie) doit se dérouler dans l’un des établissements de l'université cadi Ayyad.</h2>
+          <h2 data-aos="fade-up" data-aos-delay="400"> La manifestation (ou au moins une partie) doit se dérouler dans l’un des établissements de l'université cadi Ayyad.</h2>
           <div data-aos="fade-up" data-aos-delay="600">
             <div class="text-center text-lg-start">
-              <a href="{{ route('dashboard.user') }}" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                <span>Commencer</span>
+              <a href="{{ route('dashboard.admin') }}" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                <span>Dashboard</span>
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
@@ -78,7 +93,7 @@
 
   </section><!-- End Hero -->
 
- 
+
 
   <!-- Vendor JS Files -->
   <script src="{{asset('assets/assets/vendor/bootstrap/js/bootstrap.bundle.js')}}"></script>
