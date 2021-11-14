@@ -32,14 +32,13 @@ Auth::routes(['verify' => true]);
 
 
 Route::middleware(['verified'])->group(function () {
-    Route::get('/dashboard-user', [App\Http\Controllers\DashboardUser::class, 'index'])->name('dashboard.user');
-    Route::get('/dashboard-user/create-request', [App\Http\Controllers\DashboardUser::class, 'createRequest'])->name('create.request.form');
-    Route::post('/dashboard-user/create-request', [App\Http\Controllers\DashboardUser::class, 'createRequest'])->name('create.request.store');
+    Route::get('/dashboard-user', [App\Http\Controllers\User\DashboardController::class, 'index'])->name('dashboard.user');
+    Route::get('/dashboard-user/create-request', [App\Http\Controllers\User\DashboardController::class, 'createRequest'])->name('create.request.form');
+    Route::post('/dashboard-user/create-request', [App\Http\Controllers\User\DashboardController::class, 'createRequest'])->name('create.request.store');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //******Admin routes********
-Route::group(['prefix'=>'accounts','as'=>'account.'], function(){
-    Route::get('/', ['as' => 'index', 'uses' => 'AccountController@index']);
-    Route::get('connect', ['as' => 'connect', 'uses' = > 'AccountController@connect']);
+Route::group(['prefix' => 'accounts', 'as' => 'account.'], function () {
+    Route::get('/dashboard-admin', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard.admin');
 });

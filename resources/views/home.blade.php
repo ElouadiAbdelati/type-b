@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>accueil</title>
+  <title>Accueil</title>
   <meta content="" name="description">
 
   <meta content="" name="keywords">
@@ -79,7 +79,7 @@
           <div data-aos="fade-up" data-aos-delay="600">
             <div class="text-center text-lg-start">
               <a href="{{ route('dashboard.user') }}" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                <span>Commencer</span>
+                <span>Dashboard</span>
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
