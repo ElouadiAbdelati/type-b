@@ -10,6 +10,9 @@ use App\Models\FraisCouvert;
 use App\Models\Manifestation;
 use App\Models\ManifestationComite;
 use App\Models\ManifestationContributeur;
+use App\Models\NatureContribution;
+use App\Models\SoutienSollicite;
+use App\Models\TypeContributeur;
 use Illuminate\Http\Request;
 
 class DashboardUser extends Controller
@@ -39,11 +42,17 @@ class DashboardUser extends Controller
     {
 
         $etablissements = Etablissement::all();
+        $natureContributions =NatureContribution::all();
+        $typeContributeurs = TypeContributeur::all();
+
         $user = $request->user();
 
         $fraisCouvert = FraisCouvert::all();
         if ($request->isMethod('post')) {
             $data = $request->all();
+
+            
+           
 
             $user->etablissement_id =  $data['etablissment_coordonnateur_manifestation'];
             $user->tel =  $data['tel_coordonnateur_manifestation'];
@@ -73,7 +82,6 @@ class DashboardUser extends Controller
             $manifestation->date_debut = $data['date_debut'];
             $manifestation->date_fin = $data['date_fin'];
             $manifestation->entite_organisatrice_id = $entiteOrganisatrice->getAttributes()["id"];
-            // $manifestation->coordonnateur_id = $user->id;
 
             $manifestation = Manifestation::create($manifestation->getAttributes());
 
@@ -88,6 +96,7 @@ class DashboardUser extends Controller
 
             $contributeurs = json_decode($data['contributeurs'], true);
             for ($i = 0; $i < count($contributeurs); $i++) {
+               // dd($contributeurs[$i]);
                 $contributeur = Contributeur::create($contributeurs[$i]);
                 $manifestationContributeur = new ManifestationContributeur();
                 $manifestationContributeur->contributeur_id = $contributeur->getAttributes()['id'];
@@ -95,9 +104,20 @@ class DashboardUser extends Controller
                 $manifestationContributeur =ManifestationContributeur::create($manifestationContributeur ->getAttributes());
             }
 
+            for( $i=0; $i<count($fraisCouvert);$i++){
+                if($request->has('frais-ouvert-'.strval($fraisCouvert[$i]->id))){
+                    $soutienSollicite = new SoutienSollicite();
+                    $soutienSollicite->nbr = $data['nombre_frais_ouvert_'.strval($fraisCouvert[$i]->id)];
+                    $soutienSollicite->montant =$data['montant_frais_ouvert_'.strval($fraisCouvert[$i]->id)];
+                    $soutienSollicite->remarques =$data['remarques_frais_ouvert_'.strval($fraisCouvert[$i]->id)];
+                    $soutienSollicite->frais_couvert_id =$fraisCouvert[$i]->id;
+                    $soutienSollicite->manifestation_id =$manifestation->getAttributes()["id"];                    
+                    $soutienSollicite =SoutienSollicite::create($soutienSollicite->getAttributes());
+                }
+           }
 
         }
 
-        return view('dashboard-user/create-request', ["etablissements" => $etablissements, 'user' => $user, 'fraisCouvert' => $fraisCouvert]);
+        return view('dashboard-user/create-request', ["typeContributeurs"=>$typeContributeurs,"natureContributions"=>$natureContributions,"etablissements" => $etablissements, 'user' => $user, 'fraisCouvert' => $fraisCouvert]);
     }
 }
