@@ -20,9 +20,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin_edit_form', function () {
+/*Route::get('/admin_edit_form', function () {
     return view('admin_edit_demande');
-});
+});*/
+
+Route::get('/admin_edit_form', [App\Http\Controllers\AdminsController::class, 'getManifestation']);
+Route::get('/manif-details', [App\Http\Controllers\AdminsController::class, 'getManifestationDetails']);
+Route::post('/delete_demande', [App\Http\Controllers\AdminsController::class, 'delete']);
 
 Route::get('/email/verify', function () {
     return view('auth/verify');

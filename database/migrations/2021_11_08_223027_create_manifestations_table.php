@@ -26,9 +26,13 @@ class CreateManifestationsTable extends Migration
             $table->integer('nbr_participants_prevus');
             $table->dateTime('date_debut');
             $table->dateTime('date_fin');
+            $table->unsignedBigInteger('demande_id');
             $table->unsignedBigInteger('entite_organisatrice_id');
 
-            $table->foreign('entite_organisatrice_id')->references('id')->on('entite_organisatrices');
+            $table->foreign('demande_id')->references('id')->on('demandes') ->onDelete('cascade');
+            $table->index('demande_id');
+
+            $table->foreign('entite_organisatrice_id')->references('id')->on('entite_organisatrices')->onDelete('cascade');
             $table->index('entite_organisatrice_id');
             $table->timestamps();
         });

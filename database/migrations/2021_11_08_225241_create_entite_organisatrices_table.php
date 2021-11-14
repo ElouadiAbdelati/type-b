@@ -20,7 +20,7 @@ class CreateEntiteOrganisatricesTable extends Migration
             $table->text('responsable');
             $table->unsignedBigInteger('etablissement_id');
 
-            $table->foreign('etablissement_id')->references('id')->on('etablissements');
+            $table->foreign('etablissement_id')->references('id')->on('etablissements') ->onDelete('cascade');
             $table->index('etablissement_id');
             $table->timestamps();
         });

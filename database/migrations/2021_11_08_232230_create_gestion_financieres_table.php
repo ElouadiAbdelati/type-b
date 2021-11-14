@@ -20,7 +20,7 @@ class CreateGestionFinancieresTable extends Migration
             $table->text('information');
             $table->unsignedBigInteger('manifestation_id');
 
-            $table->foreign('manifestation_id')->references('id')->on('manifestations');
+            $table->foreign('manifestation_id')->references('id')->on('manifestations') ->onDelete('cascade');
             $table->index('manifestation_id');
             $table->timestamps();
         });

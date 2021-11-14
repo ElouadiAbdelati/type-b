@@ -8,12 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Demande extends Model
 {
     use HasFactory;
+
+
     public $fillable = [
         'code',
         'date_envoie',
         'etat',
         'remarques',
-        'manifestation_id',
         'coordonnateur_id',
     ];
+
+    public function manifestation(){
+        return $this->hasOne(Manifestation::class);
+    }
+
+    public function coordonateur(){
+        return $this->belongsTo(User::class,'coordonnateur_id');
+    }
 }

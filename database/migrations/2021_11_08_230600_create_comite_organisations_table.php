@@ -22,7 +22,7 @@ class CreateComiteOrganisationsTable extends Migration
             $table->string('tel',15);
             $table->unsignedBigInteger('etablissement_id');
 
-            $table->foreign('etablissement_id')->references('id')->on('etablissements');
+            $table->foreign('etablissement_id')->references('id')->on('etablissements') ->onDelete('cascade');
             $table->index('etablissement_id');
             $table->timestamps();
         });

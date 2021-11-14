@@ -19,9 +19,9 @@ class CreateManifestationComitesTable extends Migration
             $table->unsignedBigInteger('manifestation_id');
             $table->unsignedBigInteger('comite_organisation_id');
 
-            $table->foreign('manifestation_id')->references('id')->on('manifestations');
+            $table->foreign('manifestation_id')->references('id')->on('manifestations') ->onDelete('cascade');
             $table->index('manifestation_id');
-            $table->foreign('comite_organisation_id')->references('id')->on('comite_organisations');
+            $table->foreign('comite_organisation_id')->references('id')->on('comite_organisations') ->onDelete('cascade');
             $table->index('comite_organisation_id');
             $table->timestamps();
         });

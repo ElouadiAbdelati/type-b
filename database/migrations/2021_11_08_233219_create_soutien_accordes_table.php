@@ -22,9 +22,9 @@ class CreateSoutienAccordesTable extends Migration
             $table->unsignedBigInteger('manifestation_id');
             $table->unsignedBigInteger('frais_couvert_id');
 
-            $table->foreign('manifestation_id')->references('id')->on('manifestations');
+            $table->foreign('manifestation_id')->references('id')->on('manifestations') ->onDelete('cascade');
             $table->index('manifestation_id');
-            $table->foreign('frais_couvert_id')->references('id')->on('frais_couverts');
+            $table->foreign('frais_couvert_id')->references('id')->on('frais_couverts') ->onDelete('cascade');
             $table->index('frais_couvert_id');
             $table->timestamps();
         });
