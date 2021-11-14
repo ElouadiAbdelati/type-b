@@ -99,6 +99,6 @@ class DashboardController extends Controller
             }
         }
 
-        return view('dashboard-user/create-request', ["etablissements" => $etablissements, 'user' => $user, 'fraisCouvert' => $fraisCouvert]);
+        return view('user/create-request', ["etablissements" => $etablissements, 'user' => $user, 'fraisCouvert' => $fraisCouvert]);
     }
 }

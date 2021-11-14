@@ -74,7 +74,7 @@
 
 
                 <div class="mt-5 text-muted text-center">
-                    Vous n'avez pas un compte ? <a href="{{ route('register') }}">Créer un nouveau</a>
+                    <a href="{{ route('register') }}"> Vous n'avez pas un compte ? Créer un nouveau</a>
                 </div>
                 <div class="simple-footer">Copyright &copy; Made with 🧡 by EL OUADI, KHADIM and EL AIMANI
                 </div>

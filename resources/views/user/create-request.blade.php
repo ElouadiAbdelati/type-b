@@ -15,6 +15,7 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/components.css">
+
 </head>
 
 <body>
@@ -132,8 +133,11 @@
           </div>
 
           <div class="section-body">
+
             <form method="POST" action="{{ route('create.request.store') }}" id="form">
               @csrf
+
+
               <div class="row">
 
                 <div class="col-12 col-md-12 col-lg-12">
@@ -243,7 +247,7 @@
                       </div>
                       <div class="form-group">
                         <label>Fax</label>
-                        <input type="tel" class="form-control" name="fax_coordonnateur_manifestation" name="fax_coordonnateur_manifestation" >
+                        <input type="tel" class="form-control" name="fax_coordonnateur_manifestation" name="fax_coordonnateur_manifestation">
                       </div>
                     </div>
                   </div>
@@ -304,9 +308,14 @@
                       <h4>Contributeurs</h4>
                     </div>
                     <div class="card-body">
+
+                      <div class="section-title mt-0">Type</div>
                       <div class="form-group">
-                        <label>Type(Organisme,Etablissement)</label>
-                        <input type="text" class="form-control" id="type_contributeur" name="type_contributeur">
+                        <select class="custom-select" id="type_contributeur" name="type_contributeur">
+                          @foreach ($typeContributeurs as $typeContributeur)
+                          <option value="{{$typeContributeur->id}}" id="{{$typeContributeur->libelle}}" selected>{{$typeContributeur->libelle}}</option>
+                          @endforeach
+                        </select>
                       </div>
                       <div class="form-group">
                         <label>Nom</label>
@@ -316,13 +325,18 @@
                         <label>Montant</label>
                         <input type="number" min="0" class="form-control" id='montant_contributeur' name="montant_contributeur">
                       </div>
+
+                      <div class="section-title mt-0">Nature</div>
                       <div class="form-group">
-                        <label>Nature(hébergement,restauration...) </label>
-                        <input type="text" class="form-control" id='nature_contributeur' name="nature_contributeur">
+                        <select class="custom-select" id="nature_contributeur" name="nature_contributeur">
+                          @foreach ($natureContributions as $natureContribution)
+                          <option value="{{$natureContribution->id}}" id="{{$natureContribution->libelle}}" selected>{{$natureContribution->libelle}}</option>
+                          @endforeach
+                        </select>
                       </div>
                     </div>
                     <div class="card-footer text-right">
-                      <p style="cursor:pointer" class="btn btn-primary" onclick="addContributeur(document.getElementById('nom_contributeur').value,document.getElementById('type_contributeur').value ,document.getElementById('montant_contributeur').value,document.getElementById('nature_contributeur').value );">+</p>
+                      <p style="cursor:pointer" class="btn btn-primary" onclick="addContributeur(document.getElementById('nom_contributeur').value,$('#type_contributeur').children(':selected').attr('id'),document.getElementById('type_contributeur').value ,document.getElementById('montant_contributeur').value,$('#nature_contributeur').children(':selected').attr('id'),document.getElementById('nature_contributeur').value );">+</p>
                     </div>
                     <div style="overflow-x:auto;">
                       <table class="table " id="contributeurs_table">
@@ -342,7 +356,7 @@
                     </div>
                   </div>
                 </div>
-                <!-- <div class="col-12 col-md-12 col-lg-12">
+                <div class="col-12 col-md-12 col-lg-12">
 
                   <div class="card">
                     <div class="card-header">
@@ -382,10 +396,8 @@
                   <div class="card-footer text-right">
                     <button class="btn btn-primary">Créer </button>
                   </div>
-                </div> -->
-                <div class="card-footer text-right">
-                    <button class="btn btn-primary">Créer </button>
-                  </div>
+                </div>
+
               </div>
             </form>
           </div>
@@ -419,14 +431,30 @@
   <script src="../assets/js/custom.js"></script>
 
   <!-- Page Specific JS File -->
+  <script>
+    // Stepper lement
+    var element = document.querySelector("#kt_stepper_example_basic");
 
+    // Initialize Stepper
+    var stepper = new KTStepper(element);
+
+    // Handle next step
+    stepper.on("kt.stepper.next", function(stepper) {
+      stepper.goNext(); // go next step
+    });
+
+    // Handle previous step
+    stepper.on("kt.stepper.previous", function(stepper) {
+      stepper.goPrevious(); // go previous step
+    });
+  </script>
   <script>
     var comiteOrganisation = []
     var contributeurs = []
     var comiteOrganisationCount = 0
     var contributeurCount = 0
 
-    function addOrganisateur(tel_organisateur, nom_organisateur, prenom_organisateur, email_organisateur, etablissement_organisateur,id_etablissement_organisateur) {
+    function addOrganisateur(tel_organisateur, nom_organisateur, prenom_organisateur, email_organisateur, etablissement_organisateur, id_etablissement_organisateur) {
 
       tel_organisateur = tel_organisateur.trim()
       nom_organisateur = nom_organisateur.trim()
@@ -458,7 +486,7 @@
 
     }
 
-    function addContributeur(nom_contributeur, type_contributeur, montant_contributeur, nature_contributeur) {
+    function addContributeur(nom_contributeur, type_contributeur, id_type_contributeur, montant_contributeur, nature_contributeur, id_nature_contributeur) {
       nom_contributeur = nom_contributeur.trim()
       type_contributeur = type_contributeur.trim()
       montant_contributeur = montant_contributeur.trim()
@@ -467,9 +495,9 @@
       if (nature_contributeur != "" && montant_contributeur != "" && type_contributeur != "" && nom_contributeur != "") {
         var contributeur = {
           nom: nom_contributeur,
-          type: type_contributeur,
+          type_contributeur_id: id_type_contributeur,
           montant: montant_contributeur,
-          nature: nature_contributeur,
+          nature_contribution_id: id_nature_contributeur,
         }
         contributeurs[contributeurCount] = contributeur;
         contributeurCount = contributeurCount + 1
@@ -479,9 +507,7 @@
         newRow.innerHTML = HtmlContent;
 
         $('#nom_contributeur').val('')
-        $('#type_contributeur').val('')
         $('#montant_contributeur').val('')
-        $('#nature_contributeur').val('')
 
       } else {
 
@@ -512,21 +538,21 @@
       contributeurs.splice((i - 1), 1)
       document.getElementById('contributeurs_table').deleteRow(i);
     }
-    
+
     var fraisOuvert = <?php echo json_encode($fraisCouvert); ?>;
     for (var i = 0; i < fraisOuvert.length; i++) {
-      $('#frais-ouvert-'+fraisOuvert[i].id).change(
+      $('#frais-ouvert-' + fraisOuvert[i].id).change(
         function() {
           var str = 'frais-ouvert-'
-          var  id = this.name.slice(str.length)
+          var id = this.name.slice(str.length)
           if ($(this).is(':checked')) {
-           $('#nombre_frais_ouvert_'+id).prop( "disabled", false  );
-           $('#montant_frais_ouvert_'+id).prop( "disabled", false  );
-           $('#remarques_frais_ouvert_'+id).prop( "disabled", false  );
-          }else{
-            $('#nombre_frais_ouvert_'+id).prop( "disabled", true   );
-            $('#montant_frais_ouvert_'+id).prop( "disabled", true   );
-            $('#remarques_frais_ouvert_'+id).prop( "disabled", true   );
+            $('#nombre_frais_ouvert_' + id).prop("disabled", false);
+            $('#montant_frais_ouvert_' + id).prop("disabled", false);
+            $('#remarques_frais_ouvert_' + id).prop("disabled", false);
+          } else {
+            $('#nombre_frais_ouvert_' + id).prop("disabled", true);
+            $('#montant_frais_ouvert_' + id).prop("disabled", true);
+            $('#remarques_frais_ouvert_' + id).prop("disabled", true);
 
           }
         });
