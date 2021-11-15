@@ -134,7 +134,7 @@
 
           <div class="section-body">
 
-            <form method="POST" action="{{ route('create.request.store') }}" id="form">
+          <form method="POST" action="{{ route('create.request.store') }}" id="form">
               @csrf
 
 
