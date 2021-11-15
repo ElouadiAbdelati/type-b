@@ -7,12 +7,15 @@ use App\Http\Controllers\Controller;
 
 use App\Models\ComiteOrganisation;
 use App\Models\Contributeur;
+use App\Models\Demande;
 use App\Models\EntiteOrganisatrice;
 use App\Models\Etablissement;
 use App\Models\FraisCouvert;
 use App\Models\Manifestation;
 use App\Models\ManifestationComite;
 use App\Models\ManifestationContributeur;
+use App\Models\NatureContribution;
+use App\Models\TypeContributeur;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -43,8 +46,9 @@ class DashboardController extends Controller
 
         $etablissements = Etablissement::all();
         $user = $request->user();
-
+        $typeContributeurs = TypeContributeur::all();
         $fraisCouvert = FraisCouvert::all();
+        $natureContributions  =NatureContribution::all();
         if ($request->isMethod('post')) {
             $data = $request->all();
 
@@ -63,6 +67,14 @@ class DashboardController extends Controller
             $entiteOrganisatrice->responsable = $data['responsable_entite_organisatrice'];
             $entiteOrganisatrice->etablissement_id = $data['etablissement_entite_organisatrice'];
             $entiteOrganisatrice = EntiteOrganisatrice::create($entiteOrganisatrice->getAttributes());
+  
+            $demande =new Demande();
+            $demande->code ='sdv';
+            $demande->date_envoie = date('Y-m-d H:i:s');
+            $demande->etat ='PENDING';
+            $demande->remarques ='PENDING';
+            $demande->coordonnateur_id =$user->id;
+            $demande = Demande::create($demande->getAttributes());
 
             $manifestation = new Manifestation();
             $manifestation->intitule = $data['intitule'];
@@ -76,7 +88,7 @@ class DashboardController extends Controller
             $manifestation->date_debut = $data['date_debut'];
             $manifestation->date_fin = $data['date_fin'];
             $manifestation->entite_organisatrice_id = $entiteOrganisatrice->getAttributes()["id"];
-            // $manifestation->coordonnateur_id = $user->id;
+            $manifestation->demande_id =$demande->getAttributes()["id"] ;
 
             $manifestation = Manifestation::create($manifestation->getAttributes());
 
@@ -99,6 +111,6 @@ class DashboardController extends Controller
             }
         }
 
-        return view('user/create-request', ["etablissements" => $etablissements, 'user' => $user, 'fraisCouvert' => $fraisCouvert]);
+        return view('user/create-request', ["natureContributions"=>$natureContributions,"typeContributeurs"=>$typeContributeurs,"etablissements" => $etablissements, 'user' => $user, 'fraisCouvert' => $fraisCouvert]);
     }
 }
