@@ -14,4 +14,9 @@ class GestionFinanciere extends Model
         'information',
         'manifestation_id',
     ];
+
+    public function manifestation()
+    {
+        return $this->belongsToMany(Manifestation::class);
+    }
 }
