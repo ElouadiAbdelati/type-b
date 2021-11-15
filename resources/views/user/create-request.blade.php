@@ -134,11 +134,10 @@
             </div>
           </div>
 
-
           <div class="steps">
             <div class="step ">
               <p>
-
+                
               </p>
               <div class="bullet">
                 <span>1</span>
@@ -147,7 +146,7 @@
             </div>
             <div class="step">
               <p>
-
+                
               </p>
               <div class="bullet">
                 <span>2</span>
@@ -156,7 +155,7 @@
             </div>
             <div class="step">
               <p>
-
+                
               </p>
               <div class="bullet">
                 <span>3</span>
@@ -165,7 +164,7 @@
             </div>
             <div class="step">
               <p>
-
+                
               </p>
               <div class="bullet">
                 <span>4</span>
