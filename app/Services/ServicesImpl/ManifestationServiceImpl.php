@@ -7,29 +7,29 @@ use App\Services\ManifestationService;
 
 class ManifestationServiceImpl implements ManifestationService
 {
-    public static function findAll()
+    public  function findAll()
     {
         return Manifestation::all();
     }
-    public static function findById($id)
+    public  function findById($id)
     {
         return Manifestation::findOrFail($id);
     }
-    public static function save($manif)
+    public  function save($manif)
     {
         return Manifestation::create($manif);
     }
-    public static function update($manif)
+    public  function update($manif)
     {
         return $manif->save();
     }
-    public static function delete($id)
+    public  function delete($id)
     {
-        $manif = ManifestationServiceImpl::findById($id);
+        $manif = $this->findById($id);
         return $manif->delete();
     }
 
-    public static function getManifestation($id)
+    public  function getManifestation($id)
     {
         $frais = FraisCouvetServiceImpl::findAll();
         $demande = DemandeServiceImpl::findById($id);
@@ -43,9 +43,9 @@ class ManifestationServiceImpl implements ManifestationService
         ];
     }
 
-    public static function getManifestationDetails($id)
+    public  function getManifestationDetails($id)
     {
-        $details_part1 = ManifestationServiceImpl::getManifestation($id);
+        $details_part1 = $this->getManifestation($id);
 
         $manifestation = $details_part1['manifestation'];
         $entiteOrganisatrice = $manifestation->entiteOrganisatrice;
