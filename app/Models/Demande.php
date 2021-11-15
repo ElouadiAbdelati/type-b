@@ -22,7 +22,7 @@ class Demande extends Model
         return $this->hasOne(Manifestation::class);
     }
 
-    public function coordonateur(){
+    public function coordonnateur(){
         return $this->belongsTo(User::class,'coordonnateur_id');
     }
 }

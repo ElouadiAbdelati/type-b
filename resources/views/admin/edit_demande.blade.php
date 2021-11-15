@@ -3,12 +3,14 @@
 @section('content')
 <section class="section">
     <div class="section-header d-flex justify-content-between pl-2 pr-3">
-        @if ($manif != null )
-        <div class="d-inline"><label for="">Intitule: </label>&nbsp;<span> {{ $manif->intitule }}</span></div>
-        <div class="d-inline"><label for="">Type: </label>&nbsp;<span> {{ $manif->type }}</span></div>
-        <div class="d-inline"><label for="">Lieu: </label>&nbsp;<span> {{ $manif->lieu }}</span></div>
-        <div class="d-inline"><label for="">Date reçue: </label>&nbsp;<span> 14/11/2021</span></div>
-        <div class="d-inline"><span><a href="{{ url('/manif-details') }}" title="Plus de détails"><i class="fa fa-plus fa-lg"></i></a></span></div>
+        @if ($manifestation != null )
+        <div class="d-inline"><label for="">Intitule: </label>&nbsp;<span> {{ $manifestation->intitule }}</span></div>
+        <div class="d-inline"><label for="">Type: </label>&nbsp;<span> {{ $manifestation->type }}</span></div>
+        <div class="d-inline"><label for="">Coordonnateur: </label>&nbsp;<span> {{ $coordonnateur->name }}&nbsp;{{
+                $coordonnateur->prenom }}</span></div>
+        <div class="d-inline"><label for="">Date reçue: </label>&nbsp;<span> {{ $demande->date_envoie }}</span></div>
+        <div class="d-inline"><span><a href="{{ url('/manif-details/'.$demande->id) }}" title="Plus de détails"><i
+                        class="fa fa-plus fa-lg"></i></a></span></div>
         @endif
     </div>
 
@@ -17,7 +19,7 @@
             <div class="col-12 col-sm-12 col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Modofocation du montant sollicité</h4>
+                        <h4>Modification du montant sollicité</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -32,18 +34,21 @@
                                     <th class="text-center">Nombre accordé</th>
                                     <th class="text-center">Montant accordé</th>
                                 </tr>
-                                <tr>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">Irwansyah Saputra</td>
-                                    <td class="text-center">0000 &nbsp;&nbsp;
+                                @for ($i = 0; $i < sizeof($soutienSollicite); $i++) <tr>
+                                    <td class="text-center">{{ $soutienSollicite[$i]->libelle }} &nbsp;({{
+                                        $soutienSollicite[$i]->forfait }})</td>
+                                    <td class="">{{ $soutienSollicite[$i]->pivot->nbr }}</td>
+                                    <td class="text-center">{{ $soutienSollicite[$i]->pivot->montant }} &nbsp;&nbsp;
                                         <i class="fa fa-info-circle" aria-hidden="true" data-container="body"
                                             data-toggle="popover" data-placement="right"
-                                            data-content="Des remarques du coordonnateur." role="button">
+                                            data-content="{{ $soutienSollicite[$i]->pivot->remarques_ }}" role="button">
                                         </i>
                                     </td>
                                     <td class="text-right"><input class="form-control" type="number" name="" id=""></td>
-                                    <td class="text-right"><input class="form-control" type="number" name="" id=""></td>
-                                </tr>
+                                    <td class="text-right"><input class="form-control montantOk" type="number"  id=""></td>
+                                    </tr>
+                                    @endfor
+
                             </table>
                         </div>
                     </div>
@@ -62,7 +67,7 @@
                                             id=""></th>
                                     <th>Total accordé</th>
                                     <th class="text-right"><input class="form-control text-right" disabled type="number"
-                                            value="1000" name="" id=""></th>
+                                            value="1000" name="totalmontant" id="totalmontant"></th>
                                 </tr>
                             </table>
                         </div>
@@ -80,7 +85,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
+                    <h5 class="modal-title">Rubriques soutenues par l’UCAM</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -89,31 +94,30 @@
                     <div class="table-responsive">
                         <table class="table table-bordered table-md">
                             <tr>
-                                <th>Rubrique <a href="#" data-toggle="modal" data-target="#rubriqueModal"><i
-                                            class="fa fa-book" aria-hidden="true"></i></a></th>
-                                <th>Nombre demandé</th>
-                                <th>Montant demandé</th>
-                                <th>Nombre accordé</th>
-                                <th>Montant accordé</th>
+                                <th>Rubrique</th>
+                                <th>Forfait</th>
+                                <th>Limite</th>
+                                <th>Description</th>
+                                <th>Remarques</th>
                             </tr>
+                            @foreach ($frais as $frais_)
                             <tr>
-                                <td>1</td>
-                                <td>Irwansyah Saputra</td>
-                                <td>0000 &nbsp;
-                                    <i class="fa fa-info-circle" aria-hidden="true" data-container="body"
-                                        data-toggle="popover" data-placement="right"
-                                        data-content="Des remarques du coordonnateur." role="button">
-                                    </i>
+                                <td>{{ $frais_->libelle }}</td>
+                                <td>{{ $frais_->forfait }}
+                                    @if ( $frais_->forfait =="" )
+                                    <span>-----</span>
+                                    @endif
                                 </td>
-                                <td>000</td>
-                                <td>0000</td>
+                                <td>{{ $frais_->limite }}</td>
+                                <td>{{ $frais_->description }}</td>
+                                <td>{{ $frais_->remarques }}</td>
                             </tr>
+                            @endforeach
                         </table>
                     </div>
                 </div>
                 <div class="modal-footer bg-whitesmoke br">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

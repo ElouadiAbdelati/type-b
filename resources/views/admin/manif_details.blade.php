@@ -54,10 +54,10 @@
             <section class="section mr-5">
                 <div class="section-header d-flex justify-content-between pl-2 pr-3">
 
-                    <div class="d-inline"><label for="">Intitule: </label>&nbsp;<span> $manif->intitule </span>
+                    <div class="d-inline"><label for="">Intitule: </label>&nbsp;<span> {{ $manifestation->intitule }} </span>
                     </div>
-                    <div class="d-inline"><label for="">Type: </label>&nbsp;<span> $manif->type </span></div>
-                    <div class="d-inline"><label for="">Lieu: </label>&nbsp;<span> $manif->lieu </span></div>
+                    <div class="d-inline"><label for="">Type: </label>&nbsp;<span>{{ $manifestation->type }} </span></div>
+                    <div class="d-inline"><label for="">Lieu: </label>&nbsp;<span>{{ $manifestation->lieu }}</span></div>
                     <div class="d-inline"><label for="">Date reçue: </label>&nbsp;<span> 14/11/2021</span></div>
                     <div class="d-inline">
                         <span>

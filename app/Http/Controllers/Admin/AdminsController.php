@@ -6,15 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\Demande;
 use App\Models\Manifestation;
 use App\Models\User;
+use App\Services\DemandeService;
 use App\Services\ServicesImpl\DemandeServiceImpl;
+use App\Services\ServicesImpl\FraisCouvetServiceImpl;
+use App\Services\ServicesImpl\ManifestationServiceImpl;
 use Illuminate\Http\Request;
 
 class AdminsController extends Controller
 {
-    public function getManifestation()
+    public function getManifestation($id)
     {
-        $manif = Manifestation::first();
-        return view('admin/edit_demande',['manif'=>$manif]);
+        return view('admin/edit_demande',ManifestationServiceImpl::getManifestation($id));
     }
 
     public function delete(Request $request){
@@ -30,7 +32,7 @@ class AdminsController extends Controller
         }
     }
 
-    public function getManifestationDetails(){
-        return view('admin/manif_details');
+    public function getManifestationDetails($id){
+        return view('admin/manif_details',ManifestationServiceImpl::getManifestationDetails($id));
     }
 }
