@@ -38,8 +38,8 @@ class ManifestationServiceImpl implements ManifestationService
         $soutienSollicites = $manifestation->soutienSollicite;
         $soutienAccordes = $manifestation->soutienAccorde;
         return [
-            'demande' => $demande,'manifestation' => $manifestation, 'coordonnateur' => $coordonnateur, 'soutienSollicite' => $soutienSollicites,
-            'soutienAccorde' => $soutienAccordes, 'frais'=> $frais
+            'demande' => $demande, 'manifestation' => $manifestation, 'coordonnateur' => $coordonnateur, 'soutienSollicite' => $soutienSollicites,
+            'soutienAccorde' => $soutienAccordes, 'frais' => $frais
         ];
     }
 
@@ -57,7 +57,7 @@ class ManifestationServiceImpl implements ManifestationService
         $details = array_merge($details_part1, [
             'entiteOrganisatrice' => $entiteOrganisatrice,
             'etablissements' => $etablissements, 'contributeurs' => $contributeurs,
-             'gestionFinanciere' => $gestionFinanciere,'comiteOrganisations'=>$comiteOrganisations
+            'gestionFinanciere' => $gestionFinanciere, 'comiteOrganisations' => $comiteOrganisations
         ]);
 
         return $details;

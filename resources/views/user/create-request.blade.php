@@ -134,7 +134,7 @@
 
           <div class="section-body">
 
-          <form method="POST" action="{{ route('create.request.store') }}" id="form">
+            <form method="POST" action="{{ route('create.request.store') }}" id="form">
               @csrf
 
 
@@ -174,6 +174,15 @@
                         <label>Partenaires </label>
                         <input type="text" class="form-control" name="partenaires" required="">
                       </div>
+                      <div class="section-title mt-0"></div>
+                      <div class="form-group">
+                        <label>Etablissement(s) de l’UCAM impliqué(s) dans l’organisation </label>
+                        <select class="custom-select" name="etablissements_organisateur[]" id="etablissements_organisateur" multiple="multiple" data-height="100%">
+                          @foreach ($etablissements as $etablissement)
+                          <option value="{{$etablissement->id}}" id="{{$etablissement->libelle}}" selected>{{$etablissement->libelle}}</option>
+                          @endforeach
+                        </select>
+                      </div>
                       <div class="form-group">
                         <label>Numbre participants prevus </label>
                         <input type="number" class="form-control" name="nbr_participants_prevus" min="0" required="">
@@ -187,12 +196,12 @@
                         <input type="date" class="form-control" name="date_fin" required="">
 
                       </div>
+
                     </div>
-
-
+                    
                   </div>
 
-                  <div class="card">
+                <div class="card">
                     <div class="card-header">
                       <h4>Entité de recherche organisant la manifestation</h4>
                     </div>
@@ -217,8 +226,44 @@
                     </div>
                   </div>
 
+              </div>
+              <div class="col-12 col-md-12 col-lg-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4> Comment la gestion financière est-elle prévue ?</h4>
+                  </div>
+                  <div class="card-body">
+
+
+                    <div class="form-group">
+                      <label>Libelle</label>
+                      <input type="text" class="form-control" id='libelle_gestion_financiere' name="libelle_gestion_financiere">
+                    </div>
+                    <div class="form-group">
+                      <label>Information</label>
+                      <input type="text" min="0" class="form-control" id='information_gestion_financiere' name="information_gestion_financiere">
+                    </div>
+                  </div>
+                  <div class="card-footer text-right">
+                    <p style="cursor:pointer" class="btn btn-primary" onclick="addGestionFinanciere(document.getElementById('libelle_gestion_financiere').value,document.getElementById('information_gestion_financiere').value );">+</p>
+                  </div>
+                  <div style="overflow-x:auto;">
+                    <table class="table " id="gestion_financiere_table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Libelle</th>
+                          <th scope="col">Information</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-                <div class="col-12 col-md-12 col-lg-12">
+              </div>
+              <div class="col-12 col-md-12 col-lg-12">
                   <div class="card">
                     <div class="card-header">
                       <h4>Coordonnateur de la manifestation</h4>
@@ -393,25 +438,25 @@
                       </div>
                     </div>
                   </div>
-                  <div class="card-footer text-right">
-                    <button class="btn btn-primary">Créer </button>
-                  </div>
-                </div>
-
+              <div class="card-footer text-right">
+                <button class="btn btn-primary">Créer </button>
               </div>
-            </form>
           </div>
+
       </div>
-      </section>
+      </form>
     </div>
-    <footer class="main-footer">
-      <div class="footer-left">
-        Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a>
-      </div>
-      <div class="footer-right">
-        2.3.0
-      </div>
-    </footer>
+  </div>
+  </section>
+  </div>
+  <footer class="main-footer">
+    <div class="footer-left">
+      Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a>
+    </div>
+    <div class="footer-right">
+      2.3.0
+    </div>
+  </footer>
   </div>
   </div>
 
@@ -431,28 +476,14 @@
   <script src="../assets/js/custom.js"></script>
 
   <!-- Page Specific JS File -->
-  <script>
-    // Stepper lement
-    var element = document.querySelector("#kt_stepper_example_basic");
 
-    // Initialize Stepper
-    var stepper = new KTStepper(element);
-
-    // Handle next step
-    stepper.on("kt.stepper.next", function(stepper) {
-      stepper.goNext(); // go next step
-    });
-
-    // Handle previous step
-    stepper.on("kt.stepper.previous", function(stepper) {
-      stepper.goPrevious(); // go previous step
-    });
-  </script>
   <script>
     var comiteOrganisation = []
     var contributeurs = []
+    var gestionFinanciere = []
     var comiteOrganisationCount = 0
     var contributeurCount = 0
+    var gestionFinanciereCount = 0
 
     function addOrganisateur(tel_organisateur, nom_organisateur, prenom_organisateur, email_organisateur, etablissement_organisateur, id_etablissement_organisateur) {
 
@@ -471,7 +502,7 @@
         }
         comiteOrganisation[comiteOrganisationCount] = organisateur;
         comiteOrganisationCount = comiteOrganisationCount + 1
-        var HtmlContent = " <tr><td>" + nom_organisateur + " " + prenom_organisateur + " </td> <td>" + etablissement_organisateur + " </td><td>" + email_organisateur + " </td><td>" + tel_organisateur + " </td><td> <button  class='btn btn-icon btn-danger' onClick='deleteRow(this);'><i class='fas fa-times'></i></button> </td></tr>"
+        var HtmlContent = " <tr><td>" + nom_organisateur + " " + prenom_organisateur + " </td> <td>" + etablissement_organisateur + " </td><td>" + email_organisateur + " </td><td>" + tel_organisateur + " </td><td> <button  class='btn btn-icon btn-danger' onClick='deleteOrganisateurRow(this);'><i class='fas fa-times'></i></button> </td></tr>"
         var tableRef = document.getElementById('organisateurs_table').getElementsByTagName('tbody')[0];
         var newRow = tableRef.insertRow(tableRef.rows.length);
         newRow.innerHTML = HtmlContent;
@@ -515,19 +546,33 @@
 
     }
 
-    $("#form").submit(function(eventObj) {
-      $("<input />").attr("type", "hidden")
-        .attr("name", "comiteOrganisation")
-        .attr("value", JSON.stringify(comiteOrganisation))
-        .appendTo("#form");
-      $("<input />").attr("type", "hidden")
-        .attr("name", "contributeurs")
-        .attr("value", JSON.stringify(contributeurs))
-        .appendTo("#form");
-      return true;
-    });
+    function addGestionFinanciere(libelle_gestion_financiere, information_gestion_financiere) {
+      libelle_gestion_financiere = libelle_gestion_financiere.trim()
+      information_gestion_financiere = information_gestion_financiere.trim()
 
-    function deleteRow(row) {
+      if (libelle_gestion_financiere != "" && information_gestion_financiere != "") {
+        var gf = {
+          libelle: libelle_gestion_financiere,
+          information: information_gestion_financiere,
+        }
+        gestionFinanciere[gestionFinanciereCount] = gf;
+        gestionFinanciereCount = gestionFinanciereCount + 1
+        var HtmlContent = " <tr><td>" + libelle_gestion_financiere + "</td><td> " + information_gestion_financiere + " </td><td> <button  class='btn btn-icon btn-danger' onClick='deleteGestionFinanciereRow(this);'><i class='fas fa-times'></i></button> </td></tr>"
+        var tableRef = document.getElementById('gestion_financiere_table').getElementsByTagName('tbody')[0];
+        var newRow = tableRef.insertRow(tableRef.rows.length);
+        newRow.innerHTML = HtmlContent;
+
+        $('#information_gestion_financiere').val('')
+        $('#libelle_gestion_financiere').val('')
+
+      } else {
+
+      }
+
+    }
+
+
+    function deleteOrganisateurRow(row) {
       var i = row.parentNode.parentNode.rowIndex;
       comiteOrganisation.splice((i - 1), 1)
       document.getElementById('organisateurs_table').deleteRow(i);
@@ -538,6 +583,15 @@
       contributeurs.splice((i - 1), 1)
       document.getElementById('contributeurs_table').deleteRow(i);
     }
+
+    function deleteGestionFinanciereRow(row) {
+      var i = row.parentNode.parentNode.rowIndex;
+      gestionFinanciere.splice((i - 1), 1)
+      console.log(gestionFinanciere)
+
+      document.getElementById('gestion_financiere_table').deleteRow(i);
+    }
+
 
     var fraisOuvert = <?php echo json_encode($fraisCouvert); ?>;
     for (var i = 0; i < fraisOuvert.length; i++) {
@@ -556,6 +610,23 @@
 
           }
         });
+
+
+      $("#form").submit(function(eventObj) {
+        $("<input />").attr("type", "hidden")
+          .attr("name", "comiteOrganisation")
+          .attr("value", JSON.stringify(comiteOrganisation))
+          .appendTo("#form");
+        $("<input />").attr("type", "hidden")
+          .attr("name", "contributeurs")
+          .attr("value", JSON.stringify(contributeurs))
+          .appendTo("#form");
+        $("<input />").attr("type", "hidden")
+          .attr("name", "gestionFinanciere")
+          .attr("value", JSON.stringify(gestionFinanciere))
+          .appendTo("#form");
+        return true;
+      });
     }
   </script>
 </body>
