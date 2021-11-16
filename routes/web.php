@@ -20,14 +20,6 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-/*Route::get('/admin_edit_form', function () {
-    return view('admin_edit_demande');
-});*/
-
-Route::get('/admin_edit_form/{id}', [App\Http\Controllers\Admin\AdminsController::class, 'getManifestation']);
-Route::get('/manif-details/{id}', [App\Http\Controllers\Admin\AdminsController::class, 'getManifestationDetails']);
-Route::post('/delete_demande', [App\Http\Controllers\Admin\AdminsController::class, 'delete']);
-
 Route::get('/email/verify', function () {
     return view('auth/verify');
 });
@@ -41,11 +33,6 @@ Route::middleware(['verified'])->group(function () {
     Route::post('/dashboard-user/create-request', [App\Http\Controllers\User\DashboardController::class, 'createRequest'])->name('create.request.store');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/list-demandes', function () {
-    return view('admin/liste_demandes');
-});
-Route::get('/dashboard-admin', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard.admin');
 //******Admin's routes********
 /*Route::group(['middleware' => 'verified'], function () {
     Route::get('/dashboard-admin', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard.admin');
@@ -53,3 +40,10 @@ Route::get('/dashboard-admin', [App\Http\Controllers\Admin\DashboardController::
         return view('admin/edit_demande');
     });
 });*/
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard-admin', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard.admin');
+Route::get('/admin_edit_form/{id}', [App\Http\Controllers\Admin\AdminsController::class, 'getManifestation']);
+Route::get('/manif-details/{id}', [App\Http\Controllers\Admin\AdminsController::class, 'getManifestationDetails']);
+Route::get('/list-demandes', [App\Http\Controllers\Admin\AdminsController::class, 'getDemandesCourantes'])
+    ->name('demandes.listes');
+Route::post('/delete_demande', [App\Http\Controllers\Admin\AdminsController::class, 'delete']);

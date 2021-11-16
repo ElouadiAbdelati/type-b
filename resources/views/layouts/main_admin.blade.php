@@ -25,6 +25,12 @@
             <div class="navbar-bg"></div>
             <nav class="navbar navbar-expand-lg main-navbar">
                 <form class="form-inline mr-auto">
+                    <ul class="navbar-nav mr-3">
+                        <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i
+                                    class="fas fa-bars"></i></a></li>
+                        <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i
+                                    class="fas fa-search"></i></a></li>
+                    </ul>
                     <div class="search-element">
                         <input class="form-control" type="search" placeholder="Search" aria-label="Search"
                             data-width="250">
@@ -68,21 +74,17 @@
 
                         </li>
                         <li class="menu-header">Demandes</li>
-
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>Liste des
                                     Demandes</span></a>
                             <ul class="dropdown-menu">
 
-                                <li><a class="beep beep-sidebar" href="auth-login-2.html">Demandes courantes </a></li>
+                                <li><a class="beep beep-sidebar" href="{{ route('demandes.listes') }}">Demandes
+                                        courantes </a></li>
                                 <li><a href="#">Demandes Acceptées</a></li>
                                 <li><a href="#">Demandes Refusées</a></li>
                             </ul>
-
-
                         </li>
-
-
                     </ul>
                 </aside>
             </div>

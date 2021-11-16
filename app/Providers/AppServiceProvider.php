@@ -17,6 +17,10 @@ class AppServiceProvider extends ServiceProvider
             'App\Services\ManifestationService',
             'App\Services\ServicesImpl\ManifestationServiceImpl'
         );
+        $this->app->bind(
+            'App\Services\DemandeService',
+            'App\Services\ServicesImpl\DemandeServiceImpl'
+        );
     }
 
     /**

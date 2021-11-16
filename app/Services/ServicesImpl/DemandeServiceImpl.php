@@ -7,20 +7,25 @@ use App\Services\DemandeService;
 
 class DemandeServiceImpl implements DemandeService
 {
-    public static function findAll(){
+    public function findAll(){
         return Demande::all();
     }
-    public static function findById($id){
+    public function findById($id){
         return Demande::findOrFail($id);
     }
-    public static function save($demande){
+    public function save($demande){
         return Demande::create($demande);
     }
-    public static function update($demande){
+    public function update($demande){
         return $demande->save();
     }
-    public static function delete($id){
-        $demande = DemandeServiceImpl::findById($id);
+    public function delete($id){
+        $demande = $this->findById($id);
         return $demande->delete();
+    }
+
+    public function findByEtat($etat){
+        $demandes = Demande::where('etat','Courante')->with('coordonnateur')->get();
+        return ['demandes'=>$demandes];
     }
 }

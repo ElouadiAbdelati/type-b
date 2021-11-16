@@ -9,6 +9,6 @@ interface ManifestationService
     public  function save($manif);
     public  function update($manif);
     public  function delete($id);
-    public  function getManifestation($id);
-    public  function getManifestationDetails($id);
+    public  function getManifestation($id,$demandeService);
+    public  function getManifestationDetails($id,$demandeService);
 }

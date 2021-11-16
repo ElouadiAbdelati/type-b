@@ -3,10 +3,12 @@
 namespace App\Services\ServicesImpl;
 
 use App\Models\Manifestation;
+use App\Services\DemandeService;
 use App\Services\ManifestationService;
 
 class ManifestationServiceImpl implements ManifestationService
 {
+    private DemandeService $demandeService;
     public  function findAll()
     {
         return Manifestation::all();
@@ -29,12 +31,12 @@ class ManifestationServiceImpl implements ManifestationService
         return $manif->delete();
     }
 
-    public  function getManifestation($id)
+    public  function getManifestation($id,$demandeService)
     {
         $frais = FraisCouvetServiceImpl::findAll();
-        $demande = DemandeServiceImpl::findById($id);
+        $demande = $demandeService->findById($id);
         $manifestation = $demande->manifestation;
-        $coordonnateur = DemandeServiceImpl::findById($id)->coordonnateur;
+        $coordonnateur = $demandeService->findById($id)->coordonnateur;
         $soutienSollicites = $manifestation->soutienSollicite;
         $soutienAccordes = $manifestation->soutienAccorde;
         return [
@@ -43,9 +45,9 @@ class ManifestationServiceImpl implements ManifestationService
         ];
     }
 
-    public  function getManifestationDetails($id)
+    public  function getManifestationDetails($id,$demandeService)
     {
-        $details_part1 = $this->getManifestation($id);
+        $details_part1 = $this->getManifestation($id,$demandeService);
 
         $manifestation = $details_part1['manifestation'];
         $entiteOrganisatrice = $manifestation->entiteOrganisatrice;

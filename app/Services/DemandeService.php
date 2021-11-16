@@ -4,9 +4,10 @@ namespace App\Services;
 
 interface DemandeService
 {
-    public static function findAll();
-    public static function findById($id);
-    public static function save($demande);
-    public static function update($demande);
-    public static function delete($id);
+    public function findAll();
+    public function findById($id);
+    public function save($demande);
+    public function update($demande);
+    public function delete($id);
+    public function findByEtat($etat);
 }
