@@ -61,7 +61,7 @@
                     <div class="d-inline"><label for="">Date reçue: </label>&nbsp;<span> 14/11/2021</span></div>
                     <div class="d-inline">
                         <span>
-                            <a href="{{ url('admin_edit_form') }}" title="Retour en arrière">
+                            <a href="{{ route('admin.edit.manifestation',['id'=> $demande->id]) }}" title="Retour en arrière">
                                 <i class="fa fa-reply fa-lg"></i>
                             </a>
                         </span>

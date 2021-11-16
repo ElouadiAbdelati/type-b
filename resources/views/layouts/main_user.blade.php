@@ -15,6 +15,9 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../css/steps.css">
+
+
 </head>
 
 <body>
@@ -37,7 +40,7 @@
                 <ul class="navbar-nav navbar-right">
                     <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-                            <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+                            <div class="d-sm-none d-lg-inline-block">{{ Auth::user()->name }}</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
 
@@ -46,7 +49,14 @@
                             </a>
                             <div class="dropdown-divider"></div>
                             <a href="#" class="dropdown-item has-icon text-danger">
-                                <i class="fas fa-sign-out-alt"></i> Logout
+                                <i class="fas fa-sign-out-alt" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </i>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </a>
                         </div>
                     </li>
@@ -55,7 +65,7 @@
             <div class="main-sidebar">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
-                        <a href="{{route('home')}}">uca</a>
+                        <a href="index.html">uca</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
                         <a href="index.html">St</a>
@@ -63,12 +73,12 @@
                     <ul class="sidebar-menu">
 
 
-                        <li class="menu-header">Demandes</li>
+                        <li class="menu-header">Stisla</li>
 
                         <li class="nav-item dropdown active">
                             <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>Demandes</span></a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="{{ route('create.request.form') }}">Créer une demande</a></li>
+                                <li><a class="nav-link" href="{{ route('create.request.store') }}">Créer une demande</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -116,15 +126,18 @@
             <div class="main-content">
                 @yield('content')
             </div>
-            <!-- End of Main Content -->
-            <footer class="main-footer">
-                <div class="simple-footer">Copyright &copy; Made with 🧡 by EL OUADI, KHADIM and EL AIMANI
-                </div>
-
-
-            </footer>
         </div>
+        <footer class="main-footer">
+            <div class="footer-left">
+                Copyright &copy; 2018 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a>
+            </div>
+            <div class="footer-right">
+                2.3.0
+            </div>
+        </footer>
     </div>
+    </div>
+
 
     <!-- General JS Scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -139,8 +152,9 @@
     <!-- Template JS File -->
     <script src="../assets/js/scripts.js"></script>
     <script src="../assets/js/custom.js"></script>
-
+    <script src="../js/steps.js"></script>
     <!-- Page Specific JS File -->
+    @yield('scripts')
 </body>
 
 </html>

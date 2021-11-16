@@ -14,7 +14,8 @@
                     <div class="mr-3 ml-3">
                         <img src="../assets/img/uca.jpg" alt="logo" width="80" class="mb-5 mt-2">
                         <h4 style="color: #a34f23"> Bienvenue, </h4>
-                        <p class="text-muted">Avant de commencer, vous devez vous connecter ou vous inscrire si vous n'avez pas encore de compte.</p>
+                        <p class="text-muted">Avant de commencer, vous devez vous connecter ou vous inscrire si vous
+                            n'avez pas encore de compte.</p>
 
 
                     </div>
@@ -25,7 +26,8 @@
                             @csrf
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
+                                <input id="email" type="email" class="form-control" name="email" tabindex="1" required
+                                    autofocus>
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -39,17 +41,19 @@
                                     <div class="float-right">
 
                                         @if (Route::has('password.request'))
-                                        <a href="{{ route('password.request') }}" class="text-small">
+                                        <a href="{{ route('password.request') }}" class="text-small"></a>
 
-                                            {{ __('Mot de passe oublié?') }}
+                                        {{ __('Mot de passe oublié?') }}
 
-                                            @endif
+                                        @endif
                                     </div>
                                 </div>
 
 
 
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" type="password"
+                                    class="form-control @error('password') is-invalid @enderror" name="password"
+                                    required autocomplete="current-password">
 
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">

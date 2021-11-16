@@ -79,7 +79,7 @@
                                     Demandes</span></a>
                             <ul class="dropdown-menu">
 
-                                <li><a class="beep beep-sidebar" href="{{ route('demandes.listes') }}">Demandes
+                                <li><a class="beep beep-sidebar" href="{{ route('demandes.courantes') }}">Demandes
                                         courantes </a></li>
                                 <li><a href="#">Demandes Acceptées</a></li>
                                 <li><a href="#">Demandes Refusées</a></li>
