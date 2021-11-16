@@ -137,7 +137,7 @@
           <div class="steps">
             <div class="step ">
               <p>
-                
+
               </p>
               <div class="bullet">
                 <span>1</span>
@@ -146,7 +146,7 @@
             </div>
             <div class="step">
               <p>
-                
+
               </p>
               <div class="bullet">
                 <span>2</span>
@@ -155,7 +155,7 @@
             </div>
             <div class="step">
               <p>
-                
+
               </p>
               <div class="bullet">
                 <span>3</span>
@@ -164,7 +164,7 @@
             </div>
             <div class="step">
               <p>
-                
+
               </p>
               <div class="bullet">
                 <span>4</span>
@@ -239,36 +239,12 @@
                             </div>
 
                           </div>
-
-                        </div>
-
-                        <div class="card">
-                          <div class="card-header">
-                            <h4>Entité de recherche organisant la manifestation</h4>
-                          </div>
-                          <div class="card-body">
-                            <div class="form-group">
-                              <label>nom</label>
-                              <input type="text" class="form-control" name="nom_entite_organisatrice" required="">
-                            </div>
-                            <div class="form-group">
-                              <label>responsable</label>
-                              <input type="text" class="form-control" name="responsable_entite_organisatrice" required="">
-                            </div>
-                            <div class="section-title mt-0">Etablissment</div>
-                            <div class="form-group">
-                              <select class="custom-select" name="etablissement_entite_organisatrice">
-                                @foreach ($etablissements as $etablissement)
-                                <option value="{{$etablissement->id}}" selected>{{$etablissement->libelle}}</option>
-                                @endforeach
-                              </select>
-                            </div>
-
-                          </div>
                           <div class="card-footer text-right">
-                            <p class="btn btn-primary firstNext next"> Next </p>
+                            <button class="btn btn-primary firstNext next"> Next </button>
                           </div>
                         </div>
+
+
 
                       </div>
 
@@ -276,6 +252,32 @@
 
                   </div>
                   <div class="page">
+                    <div class="col-12 col-md-12 col-lg-12">
+                      <div class="card">
+                        <div class="card-header">
+                          <h4>Entité de recherche organisant la manifestation</h4>
+                        </div>
+                        <div class="card-body">
+                          <div class="form-group">
+                            <label>nom</label>
+                            <input type="text" class="form-control" name="nom_entite_organisatrice" required="">
+                          </div>
+                          <div class="form-group">
+                            <label>responsable</label>
+                            <input type="text" class="form-control" name="responsable_entite_organisatrice" required="">
+                          </div>
+                          <div class="section-title mt-0">Etablissment</div>
+                          <div class="form-group">
+                            <select class="custom-select" name="etablissement_entite_organisatrice">
+                              @foreach ($etablissements as $etablissement)
+                              <option value="{{$etablissement->id}}" selected>{{$etablissement->libelle}}</option>
+                              @endforeach
+                            </select>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
                     <div class="col-12 col-md-12 col-lg-12">
                       <div class="card">
                         <div class="card-header">
@@ -344,64 +346,13 @@
                             <input type="tel" class="form-control" name="fax_coordonnateur_manifestation" name="fax_coordonnateur_manifestation">
                           </div>
                         </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-header">
-                          <h4>Comité d'organisation</h4>
+                        <div class="card-footer text-right">
+                          <p class="btn btn-primary prev-1 prev"> Previous </p>
+                          <p class="btn btn-primary next-1 next"> Next </p>
+
                         </div>
-                        <div class="card-body">
-                          <div class="form-group">
-                            <label>Nom</label>
-                            <input type="text" class="form-control" id="nom_organisateur" name="nom_organisateur">
-                          </div>
-                          <div class="form-group">
-                            <label> Prenom</label>
-                            <input type="text" class="form-control" id="prenom_organisateur" name="prenom_organisateur">
-                          </div>
-                          <div class="form-group">
-                            <label> Tel</label>
-                            <input type="tel" class="form-control" id="tel_organisateur" name="tel_organisateur">
-                          </div>
-                          <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" class="form-control" id="email_organisateur" name="email_organisateur">
-                          </div>
-                          <div class="section-title mt-0">Etablissment</div>
-                          <div class="form-group">
-                            <select class="custom-select" id="etablissement_organisateur" name="etablissement_organisateur">
-                              @foreach ($etablissements as $etablissement)
-                              <option value="{{$etablissement->id}}" id="{{$etablissement->libelle}}" selected>{{$etablissement->libelle}}</option>
-                              @endforeach
-                            </select>
-                          </div>
-                          <div class="card-footer text-right">
-                            <p style="cursor:pointer" class="btn btn-primary" onclick="addOrganisateur(document.getElementById('tel_organisateur').value,document.getElementById('nom_organisateur').value ,document.getElementById('prenom_organisateur').value,document.getElementById('email_organisateur').value, $('#etablissement_organisateur').children(':selected').attr('id') ,document.getElementById('etablissement_organisateur').value );">+</p>
-                          </div>
-                          <div style="overflow-x:auto;">
-                            <table class="table " id="organisateurs_table">
-                              <thead>
-                                <tr>
-                                  <th scope="col">nom & prenom</th>
-                                  <th scope="col">etablissement</th>
-                                  <th scope="col">email</th>
-                                  <th scope="col">tel</th>
-                                  <th scope="col">Action</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-
-                              </tbody>
-                            </table>
-                          </div>
-                          <div class="card-footer text-right">
-                            <p class="btn btn-primary prev-1 prev"> Previous </p>
-                            <p class="btn btn-primary next-1 next"> Next </p>
-
-                          </div>
-                        </div>
-
-
                       </div>
+
                     </div>
 
                   </div>
@@ -468,6 +419,60 @@
 
                   </div>
                   <div class="page">
+                    <div class="col-12 col-md-12 col-lg-12">
+                      <div class="card">
+                        <div class="card-header">
+                          <h4>Comité d'organisation</h4>
+                        </div>
+                        <div class="card-body">
+                          <div class="form-group">
+                            <label>Nom</label>
+                            <input type="text" class="form-control" id="nom_organisateur" name="nom_organisateur">
+                          </div>
+                          <div class="form-group">
+                            <label> Prenom</label>
+                            <input type="text" class="form-control" id="prenom_organisateur" name="prenom_organisateur">
+                          </div>
+                          <div class="form-group">
+                            <label> Tel</label>
+                            <input type="tel" class="form-control" id="tel_organisateur" name="tel_organisateur">
+                          </div>
+                          <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" class="form-control" id="email_organisateur" name="email_organisateur">
+                          </div>
+                          <div class="section-title mt-0">Etablissment</div>
+                          <div class="form-group">
+                            <select class="custom-select" id="etablissement_organisateur" name="etablissement_organisateur">
+                              @foreach ($etablissements as $etablissement)
+                              <option value="{{$etablissement->id}}" id="{{$etablissement->libelle}}" selected>{{$etablissement->libelle}}</option>
+                              @endforeach
+                            </select>
+                          </div>
+                          <div class="card-footer text-right">
+                            <p style="cursor:pointer" class="btn btn-primary" onclick="addOrganisateur(document.getElementById('tel_organisateur').value,document.getElementById('nom_organisateur').value ,document.getElementById('prenom_organisateur').value,document.getElementById('email_organisateur').value, $('#etablissement_organisateur').children(':selected').attr('id') ,document.getElementById('etablissement_organisateur').value );">+</p>
+                          </div>
+                          <div style="overflow-x:auto;">
+                            <table class="table " id="organisateurs_table">
+                              <thead>
+                                <tr>
+                                  <th scope="col">nom & prenom</th>
+                                  <th scope="col">etablissement</th>
+                                  <th scope="col">email</th>
+                                  <th scope="col">tel</th>
+                                  <th scope="col">Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+
+                              </tbody>
+                            </table>
+                          </div>
+
+                        </div>
+
+                      </div>
+                    </div>
                     <div class="col-12 col-md-12 col-lg-12">
 
                       <div class="card">

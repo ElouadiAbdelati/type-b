@@ -60,7 +60,7 @@
           @endauth
 
           @endif
-          <li><a class="getstarted scrollto" href="{{ route('dashboard.admin') }}">Commencer</a></li>
+          <li><a class="getstarted scrollto" href="{{ route('dashboard') }}">Commencer</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -78,7 +78,7 @@
           <h2 data-aos="fade-up" data-aos-delay="400"> La manifestation (ou au moins une partie) doit se dérouler dans l’un des établissements de l'université cadi Ayyad.</h2>
           <div data-aos="fade-up" data-aos-delay="600">
             <div class="text-center text-lg-start">
-              <a href="{{ route('dashboard.admin') }}" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+              <a href="{{ route('dashboard') }}" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
                 <span>Dashboard</span>
                 <i class="bi bi-arrow-right"></i>
               </a>
