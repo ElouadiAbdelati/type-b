@@ -42,6 +42,9 @@ Auth::routes(['verify' => true]);
 // });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/list-demandes', function () {
+    return view('admin/liste_demandes');
+});
 Route::get('/dashboard-admin', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard.admin');
 //******Admin's routes********
 /*Route::group(['middleware' => 'verified'], function () {

@@ -79,10 +79,7 @@
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-md">
                                             <tr>
-                                                <th class="text-center">Rubrique &nbsp;&nbsp;
-                                                    <a href="#" data-toggle="modal" data-target="#rubriqueModal"><i
-                                                            class="fa fa-book" aria-hidden="true"></i></a>
-                                                </th>
+                                                <th class="text-center">Rubrique<th>
                                                 <th class="text-center">Nombre demandé</th>
                                                 <th class="text-center">Montant demandé</th>
                                                 <th class="text-center">Nombre accordé</th>
