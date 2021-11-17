@@ -9,12 +9,17 @@ use Illuminate\Http\Request;
 
 class AdminsController extends Controller
 {
-    public function getManifestation($id, ManifestationService $manifestationService,DemandeService $demandeService)
+    public function __construct()
     {
-        return view('admin/edit_demande', $manifestationService->getManifestation($id,$demandeService));
+        $this->middleware('auth');
     }
 
-    public function delete(Request $request,DemandeService $demandeService)
+    public function getManifestation($id, ManifestationService $manifestationService, DemandeService $demandeService)
+    {
+        return view('admin/edit_demande', $manifestationService->getManifestation($id, $demandeService));
+    }
+
+    public function delete(Request $request, DemandeService $demandeService)
     {
         try {
 
@@ -28,10 +33,10 @@ class AdminsController extends Controller
         }
     }
 
-    public function getManifestationDetails($id, ManifestationService $manifestationService,DemandeService $demandeService)
+    public function getManifestationDetails($id, ManifestationService $manifestationService, DemandeService $demandeService)
     {
-        dd($manifestationService->getManifestationDetails($id,$demandeService));
-        return view('admin/manif_details', $manifestationService->getManifestationDetails($id,$demandeService));
+        //dd($manifestationService->getManifestationDetails($id, $demandeService));
+        return view('admin/manif_details', $manifestationService->getManifestationDetails($id, $demandeService));
     }
 
     public function getDemandesCourantes(DemandeService $demandeService)
