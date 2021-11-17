@@ -39,6 +39,7 @@ Route::middleware(['verified'])->group(function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // ********* Admin's routes *******
 Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard-admin', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard.admin');
     Route::get('/admin_edit_form/{id}', [App\Http\Controllers\Admin\AdminsController::class, 'getManifestation'])
         ->name('admin.edit.manifestation');

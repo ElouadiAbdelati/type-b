@@ -12,138 +12,132 @@
     <div class="section-body">
         <h2 class="section-title">{{ date('d-m-Y H:i') }}</h2>
         <div class="row">
-            <div class="col-6">
-                <div class="activities">
-                    <div class="activity">
-                        <div class="activity-icon bg-primary text-white shadow-primary">
-                            <i class="">2</i>
-                        </div>
-                        <div class="activity-detail">
-                            <div class="mb-2">
-                                <span class="text-job text-primary">2 min ago</span>
-                                <span class="bullet"></span>
-                                <a href="#" class="text-job has-icon"><i class="fas fa-pen"></i> Modifier</a>
-                                <div class="float-right dropdown">
-                                    <a href="#" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
-                                    <div class="dropdown-menu">
-                                        <div class="dropdown-title">Options</div>
-                                        <a href="#" class="dropdown-item has-icon text-success"
-                                            data-confirm="Wait, wait, wait...|This action can't be undone. Want to take risks?"
-                                            data-confirm-text-yes="Yes, IDC"><i class="fas fa-check"></i> Accepter</a>
-                                        <a href="#" class="dropdown-item has-icon text-danger"
-                                            data-confirm="Wait, wait, wait...|This action can't be undone. Want to take risks?"
-                                            data-confirm-text-yes="Yes, IDC"><i class="fas fa-times"></i> Refuser</a>
-                                        <a href="#" class="dropdown-item has-icon text-info"><i class="fas fa-list"></i>
-                                            Detail</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="#" class="dropdown-item has-icon text-warning"
-                                            data-confirm="Wait, wait, wait...|This action can't be undone. Want to take risks?"
-                                            data-confirm-text-yes="Yes, IDC"><i class="fas fa-archive"></i>
-                                            Archive</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>Have commented on the task of "<a href="#">Responsive design</a>".</p>
-                        </div>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Basic DataTables</h4>
                     </div>
-                    <div class="activity">
-                        <div class="activity-icon bg-primary text-white shadow-primary">
-                            <i class="">2</i>
-                        </div>
-                        <div class="activity-detail">
-                            <div class="mb-2">
-                                <span class="text-job text-primary">2 min ago</span>
-                                <span class="bullet"></span>
-                                <a href="#" class="text-job has-icon"><i class="fas fa-pen"></i> Modifier</a>
-                                <div class="float-right dropdown">
-                                    <a href="#" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
-                                    <div class="dropdown-menu">
-                                        <div class="dropdown-title">Options</div>
-                                        <a href="#" class="dropdown-item has-icon text-success"
-                                            data-confirm="Wait, wait, wait...|This action can't be undone. Want to take risks?"
-                                            data-confirm-text-yes="Yes, IDC"><i class="fas fa-check"></i> Accepter</a>
-                                        <a href="#" class="dropdown-item has-icon text-danger"
-                                            data-confirm="Wait, wait, wait...|This action can't be undone. Want to take risks?"
-                                            data-confirm-text-yes="Yes, IDC"><i class="fas fa-times"></i> Refuser</a>
-                                        <a href="#" class="dropdown-item has-icon text-info"><i class="fas fa-list"></i>
-                                            Detail</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="#" class="dropdown-item has-icon text-warning"
-                                            data-confirm="Wait, wait, wait...|This action can't be undone. Want to take risks?"
-                                            data-confirm-text-yes="Yes, IDC"><i class="fas fa-archive"></i>
-                                            Archive</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>Have commented on the task of "<a href="#">Responsive design</a>".</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="activities">
-                    <div class="activity">
-                        <div class="activity-icon bg-primary text-white shadow-primary">
-                            <i class="">2</i>
-                        </div>
-                        <div class="activity-detail">
-                            <div class="mb-2">
-                                <span class="text-job text-primary">2 min ago</span>
-                                <span class="bullet"></span>
-                                <a href="#" class="text-job has-icon"><i class="fas fa-pen"></i> Modifier</a>
-                                <div class="float-right dropdown">
-                                    <a href="#" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
-                                    <div class="dropdown-menu">
-                                        <div class="dropdown-title">Options</div>
-                                        <a href="#" class="dropdown-item has-icon text-success"
-                                            data-confirm="Wait, wait, wait...|This action can't be undone. Want to take risks?"
-                                            data-confirm-text-yes="Yes, IDC"><i class="fas fa-check"></i> Accepter</a>
-                                        <a href="#" class="dropdown-item has-icon text-danger"
-                                            data-confirm="Wait, wait, wait...|This action can't be undone. Want to take risks?"
-                                            data-confirm-text-yes="Yes, IDC"><i class="fas fa-times"></i> Refuser</a>
-                                        <a href="#" class="dropdown-item has-icon text-info"><i class="fas fa-list"></i>
-                                            Detail</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="#" class="dropdown-item has-icon text-warning"
-                                            data-confirm="Wait, wait, wait...|This action can't be undone. Want to take risks?"
-                                            data-confirm-text-yes="Yes, IDC"><i class="fas fa-archive"></i>
-                                            Archive</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>Have commented on the task of "<a href="#">Responsive design</a>".</p>
-                        </div>
-                    </div>
-                    <div class="activity">
-                        <div class="activity-icon bg-primary text-white shadow-primary">
-                            <i class="">2</i>
-                        </div>
-                        <div class="activity-detail">
-                            <div class="mb-2">
-                                <span class="text-job text-primary">2 min ago</span>
-                                <span class="bullet"></span>
-                                <a href="#" class="text-job has-icon"><i class="fas fa-pen"></i> Modifier</a>
-                                <div class="float-right dropdown">
-                                    <a href="#" data-toggle="dropdown"><i class="fas fa-ellipsis-h"></i></a>
-                                    <div class="dropdown-menu">
-                                        <div class="dropdown-title">Options</div>
-                                        <a href="#" class="dropdown-item has-icon text-success"
-                                            data-confirm="Wait, wait, wait...|This action can't be undone. Want to take risks?"
-                                            data-confirm-text-yes="Yes, IDC"><i class="fas fa-check"></i> Accepter</a>
-                                        <a href="#" class="dropdown-item has-icon text-danger"
-                                            data-confirm="Wait, wait, wait...|This action can't be undone. Want to take risks?"
-                                            data-confirm-text-yes="Yes, IDC"><i class="fas fa-times"></i> Refuser</a>
-                                        <a href="#" class="dropdown-item has-icon text-info"><i class="fas fa-list"></i>
-                                            Detail</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="#" class="dropdown-item has-icon text-warning"
-                                            data-confirm="Wait, wait, wait...|This action can't be undone. Want to take risks?"
-                                            data-confirm-text-yes="Yes, IDC"><i class="fas fa-archive"></i>
-                                            Archive</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <p>Have commented on the task of "<a href="#">Responsive design</a>".</p>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped" id="table-1">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">
+                                            #
+                                        </th>
+                                        <th>Task Name</th>
+                                        <th>Progress</th>
+                                        <th>Members</th>
+                                        <th>Due Date</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            1
+                                        </td>
+                                        <td>Create a mobile app</td>
+                                        <td class="align-middle">
+                                            <div class="progress" data-height="4" data-toggle="tooltip" title="100%">
+                                                <div class="progress-bar bg-success" data-width="100%"></div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <img alt="image" src="../assets/img/avatar/avatar-5.png"
+                                                class="rounded-circle" width="35" data-toggle="tooltip"
+                                                title="Wildan Ahdian">
+                                        </td>
+                                        <td>2018-01-20</td>
+                                        <td>
+                                            <div class="badge badge-success">Completed</div>
+                                        </td>
+                                        <td><a href="#" class="btn btn-secondary">Detail</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            2
+                                        </td>
+                                        <td>Redesign homepage</td>
+                                        <td class="align-middle">
+                                            <div class="progress" data-height="4" data-toggle="tooltip" title="0%">
+                                                <div class="progress-bar" data-width="0"></div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <img alt="image" src="../assets/img/avatar/avatar-1.png"
+                                                class="rounded-circle" width="35" data-toggle="tooltip"
+                                                title="Nur Alpiana">
+                                            <img alt="image" src="../assets/img/avatar/avatar-3.png"
+                                                class="rounded-circle" width="35" data-toggle="tooltip"
+                                                title="Hariono Yusup">
+                                            <img alt="image" src="../assets/img/avatar/avatar-4.png"
+                                                class="rounded-circle" width="35" data-toggle="tooltip"
+                                                title="Bagus Dwi Cahya">
+                                        </td>
+                                        <td>2018-04-10</td>
+                                        <td>
+                                            <div class="badge badge-info">Todo</div>
+                                        </td>
+                                        <td><a href="#" class="btn btn-secondary">Detail</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            3
+                                        </td>
+                                        <td>Backup database</td>
+                                        <td class="align-middle">
+                                            <div class="progress" data-height="4" data-toggle="tooltip" title="70%">
+                                                <div class="progress-bar bg-warning" data-width="70%"></div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <img alt="image" src="../assets/img/avatar/avatar-1.png"
+                                                class="rounded-circle" width="35" data-toggle="tooltip"
+                                                title="Rizal Fakhri">
+                                            <img alt="image" src="../assets/img/avatar/avatar-2.png"
+                                                class="rounded-circle" width="35" data-toggle="tooltip"
+                                                title="Hasan Basri">
+                                        </td>
+                                        <td>2018-01-29</td>
+                                        <td>
+                                            <div class="badge badge-warning">In Progress</div>
+                                        </td>
+                                        <td><a href="#" class="btn btn-secondary">Detail</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            4
+                                        </td>
+                                        <td>Input data</td>
+                                        <td class="align-middle">
+                                            <div class="progress" data-height="4" data-toggle="tooltip" title="100%">
+                                                <div class="progress-bar bg-success" data-width="100%"></div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <img alt="image" src="../assets/img/avatar/avatar-2.png"
+                                                class="rounded-circle" width="35" data-toggle="tooltip"
+                                                title="Rizal Fakhri">
+                                            <img alt="image" src="../assets/img/avatar/avatar-5.png"
+                                                class="rounded-circle" width="35" data-toggle="tooltip"
+                                                title="Isnap Kiswandi">
+                                            <img alt="image" src="../assets/img/avatar/avatar-4.png"
+                                                class="rounded-circle" width="35" data-toggle="tooltip"
+                                                title="Yudi Nawawi">
+                                            <img alt="image" src="../assets/img/avatar/avatar-1.png"
+                                                class="rounded-circle" width="35" data-toggle="tooltip"
+                                                title="Khaerul Anwar">
+                                        </td>
+                                        <td>2018-01-16</td>
+                                        <td>
+                                            <div class="badge badge-success">Completed</div>
+                                        </td>
+                                        <td><a href="#" class="btn btn-secondary">Detail</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -151,4 +145,8 @@
         </div>
     </div>
 </section>
+@endsection
+@section('scripts')
+ <script src="{{ mix('js/app.js') }}"></script>
+<script src="../assets/js/page/modules-datatables.js"></script>
 @endsection
