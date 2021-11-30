@@ -9,5 +9,5 @@ interface DemandeService
     public function save($demande);
     public function update($demande);
     public function delete($id);
-    public function findByEtat($etat);
+    public function findByEtat($etat,$manifestationService);
 }

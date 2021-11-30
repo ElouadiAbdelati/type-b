@@ -9,7 +9,7 @@ class Demande extends Model
 {
     use HasFactory;
 
-    protected $with = ['coordonnateur'];
+    protected $with = ['coordonnateur','manifestation'];
 
     public $fillable = [
         'code',

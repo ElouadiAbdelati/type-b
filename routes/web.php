@@ -29,7 +29,7 @@ Auth::routes(['verify' => true]);
 // ******User's routes********
 Route::middleware(['verified'])->group(function () {
 
-    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+    //Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/dashboard-user', [App\Http\Controllers\User\DashboardController::class, 'index'])->name('dashboard.user');
     Route::get('/dashboard-user/create-request', [App\Http\Controllers\User\DashboardController::class, 'createRequest'])->name('create.request.form');
@@ -45,7 +45,11 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         ->name('admin.edit.manifestation');
     Route::get('/manif-details/{id}', [App\Http\Controllers\Admin\AdminsController::class, 'getManifestationDetails'])
         ->name('manifestation.details');
-    Route::get('/list-demandes', [App\Http\Controllers\Admin\AdminsController::class, 'getDemandesCourantes'])
+    Route::get('/demandes-courantes', [App\Http\Controllers\Admin\AdminsController::class, 'getDemandesCourantes'])
         ->name('demandes.courantes');
+    Route::get('/demandes-acceptees', [App\Http\Controllers\Admin\AdminsController::class, 'getDemandesAcceptees'])
+        ->name('demandes.acceptees');
+    Route::get('/demandes-refusees', [App\Http\Controllers\Admin\AdminsController::class, 'getDemandesResfusees'])
+        ->name('demandes.refusees');
     Route::post('/delete_demande', [App\Http\Controllers\Admin\AdminsController::class, 'delete'])->name('delete.demande');
 });

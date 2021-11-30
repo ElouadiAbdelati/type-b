@@ -31,7 +31,7 @@ class ManifestationServiceImpl implements ManifestationService
         return $manif->delete();
     }
 
-    public  function getManifestation($id,$demandeService)
+    public  function getManifestation($id, $demandeService)
     {
         $frais = FraisCouvetServiceImpl::findAll();
         $demande = $demandeService->findById($id);
@@ -45,9 +45,9 @@ class ManifestationServiceImpl implements ManifestationService
         ];
     }
 
-    public  function getManifestationDetails($id,$demandeService)
+    public  function getManifestationDetails($id, $demandeService)
     {
-        $details_part1 = $this->getManifestation($id,$demandeService);
+        $details_part1 = $this->getManifestation($id, $demandeService);
 
         $manifestation = $details_part1['manifestation'];
         $entiteOrganisatrice = $manifestation->entiteOrganisatrice;
@@ -63,5 +63,12 @@ class ManifestationServiceImpl implements ManifestationService
         ]);
 
         return $details;
+    }
+
+    public function getMontantTotal($id)
+    {
+        $manifestation = $this->findById($id);
+        $montantTotal = $manifestation->soutienAccorde->sum('montant');
+        return $montantTotal;
     }
 }

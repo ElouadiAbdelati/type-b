@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Forms &rsaquo; Form Validation &mdash; Stisla</title>
+    <title>UCA</title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -72,25 +72,45 @@
                         <a href="{{route('home')}}">uca</a>
                     </div>
                     <div class="sidebar-brand sidebar-brand-sm">
-                        <a href="index.html">St</a>
+                        <a href="index.html">UCA</a>
                     </div>
                     <ul class="sidebar-menu">
 
                         <li class="menu-header">Tableau de bord</li>
-                        <li class="nav-item dropdown active">
-                            <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Tableau de bord</span></a>
+                        <li @if (Route::is('dashboard.admin')) class="nav-item dropdown active" @endif>
+                            <a href="{{ route('dashboard.admin') }}" class="nav-link"><i
+                                    class="fas fa-fire"></i><span>Tableau de bord</span></a>
 
                         </li>
-                        <li class="menu-header">Demandes</li>
+                        <li class="menu-header">Liste des Demandes</li>
+                        <li class="nav-item dropdown {{Route::is('demandes.courantes')?'active':''}}"><a
+                                class="{{Route::is('demandes.courantes')?'beep beep-sidebar':''}}"
+                                href="{{ route('demandes.courantes') }}">
+                                <i class="fa fa-folder-open"></i>
+                                <span> Courantes</span>
+                            </a></li>
+                        <li class="nav-item dropdown {{Route::is('demandes.acceptees')?'active':''}}"><a
+                                class="{{Route::is('demandes.acceptees')?'beep beep-sidebar':''}}"
+                                href="{{ route('demandes.acceptees') }}">
+                                <i class="fa fa-folder"></i>
+                                <span>Acceptées</span>
+                            </a></li>
+                        <li class="nav-item dropdown {{Route::is('demandes.refusees')?'active':''}}"><a
+                                class="{{Route::is('demandes.refusees')?'beep beep-sidebar':''}}"
+                                href="{{ route('demandes.refusees') }}">
+                                <i class="fa fa-window-close"></i>
+                                <span>Refusées</span>
+                            </a></li>
+
+                        <li class="menu-header">Paramétres</li>
                         <li class="nav-item dropdown">
                             <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>Liste des
-                                    Demandes</span></a>
+                                    paramétres</span></a>
                             <ul class="dropdown-menu">
-
-                                <li><a class="beep beep-sidebar" href="{{ route('demandes.courantes') }}">Demandes
+                                <li><a class="" href="#">Demandes
                                         courantes </a></li>
-                                <li><a href="#">Demandes Acceptées</a></li>
-                                <li><a href="#">Demandes Refusées</a></li>
+                                <li><a class="" href="#">Demandes Acceptées</a></li>
+                                <li><a class="" href="#">Demandes Refusées</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -103,7 +123,7 @@
             </div>
             <!-- End of Main Content -->
             <footer class="main-footer">
-                <div class="simple-footer">Copyright &copy; Made with 🧡 by EL OUADI, KHADIM and EL AIMANI
+                <div class="footer-right">Copyright &copy; Made with 🧡 by EL OUADI, KHADIM and EL AIMANI
                 </div>
             </footer>
         </div>
@@ -116,7 +136,8 @@
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"
+        defer>
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js" defer>
     </script>

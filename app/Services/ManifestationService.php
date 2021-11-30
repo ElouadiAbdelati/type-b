@@ -11,4 +11,5 @@ interface ManifestationService
     public  function delete($id);
     public  function getManifestation($id,$demandeService);
     public  function getManifestationDetails($id,$demandeService);
+    public function getMontantTotal($id);
 }

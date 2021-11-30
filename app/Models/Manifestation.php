@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Manifestation extends Model
 {
     use HasFactory;
+
+    protected $with=['soutienSollicite'];
+
     public $fillable = [
         'intitule',
         'type',

@@ -39,9 +39,20 @@ class AdminsController extends Controller
         return view('admin/manif_details', $manifestationService->getManifestationDetails($id, $demandeService));
     }
 
-    public function getDemandesCourantes(DemandeService $demandeService)
+    public function getDemandesCourantes(DemandeService $demandeService,ManifestationService $manifestationService)
     {
         //dd( $demandeService->findByEtat('Courante'));
-        return view('admin/liste_demandes', $demandeService->findByEtat('Courante'));
+        return view('admin/liste_demandes', $demandeService->findByEtat('Courante',$manifestationService));
+    }
+
+    public function getDemandesAcceptees(DemandeService $demandeService,ManifestationService $manifestationService)
+    {
+        //dd( $demandeService->findByEtat('Courante'));
+        return view('admin/liste_demandes', $demandeService->findByEtat('Acceptée',$manifestationService));
+    }
+    public function getDemandesResfusees(DemandeService $demandeService,ManifestationService $manifestationService)
+    {
+        //dd( $demandeService->findByEtat('Courante'));
+        return view('admin/liste_demandes', $demandeService->findByEtat('Refusée',$manifestationService));
     }
 }

@@ -4,9 +4,14 @@ namespace App\Services\ServicesImpl;
 
 use App\Models\Demande;
 use App\Services\DemandeService;
+use PhpParser\Node\Expr\Cast\Array_;
 
 class DemandeServiceImpl implements DemandeService
 {
+    public function __construct()
+    {
+
+    }
     public function findAll(){
         return Demande::all();
     }
@@ -24,8 +29,9 @@ class DemandeServiceImpl implements DemandeService
         return $demande->delete();
     }
 
-    public function findByEtat($etat){
-        $demandes = Demande::where('etat','Courante')->with('coordonnateur')->get();
+    public function findByEtat($etat,$manifestationService){
+        $demandes = Demande::where('etat',$etat)->with('coordonnateur','manifestation')->get();
+        //dd($demandes);
         return ['demandes'=>$demandes];
     }
 }
