@@ -34,7 +34,7 @@ class Manifestation extends Model
     public function soutienSollicite()
     {
         return $this->belongsToMany(FraisCouvert::class, 'soutien_sollicites', 'manifestation_id', 'frais_couvert_id')
-            ->withPivot('nbr', 'montant', 'remarques_');
+            ->withPivot('nbr', 'montant', 'remarques');
     }
     public function soutienAccorde()
     {

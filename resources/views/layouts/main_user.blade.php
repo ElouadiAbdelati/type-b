@@ -45,11 +45,9 @@
                 <ul class="navbar-nav navbar-right">
                     <li class="dropdown"><a href="#" data-toggle="dropdown"
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                            <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
                             <div class="d-sm-none d-lg-inline-block">{{ Auth::user()->name }}</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-
                             <a href="features-settings.html" class="dropdown-item has-icon">
                                 <i class="fas fa-cog"></i> Settings
                             </a>
@@ -86,48 +84,11 @@
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('create.request.store') }}">Créer une demande</a>
                                 </li>
+                                <li><a class="nav-link" href="{{ route('dashboard.user') }}">Liste des demandes</a>
+                                </li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link has-dropdown"><i class="fas fa-map-marker-alt"></i> <span>Google
-                                    Maps</span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="gmaps-advanced-route.html">Advanced Route</a></li>
-                                <li><a href="gmaps-draggable-marker.html">Draggable Marker</a></li>
-                                <li><a href="gmaps-geocoding.html">Geocoding</a></li>
-                                <li><a href="gmaps-geolocation.html">Geolocation</a></li>
-                                <li><a href="gmaps-marker.html">Marker</a></li>
-                                <li><a href="gmaps-multiple-marker.html">Multiple Marker</a></li>
-                                <li><a href="gmaps-route.html">Route</a></li>
-                                <li><a href="gmaps-simple.html">Simple</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link has-dropdown"><i class="fas fa-plug"></i>
-                                <span>Modules</span></a>
-                            <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="modules-calendar.html">Calendar</a></li>
-                                <li><a class="nav-link" href="modules-chartjs.html">ChartJS</a></li>
-                                <li><a class="nav-link" href="modules-datatables.html">DataTables</a></li>
-                                <li><a class="nav-link" href="modules-flag.html">Flag</a></li>
-                                <li><a class="nav-link" href="modules-font-awesome.html">Font Awesome</a></li>
-                                <li><a class="nav-link" href="modules-ion-icons.html">Ion Icons</a></li>
-                                <li><a class="nav-link" href="modules-owl-carousel.html">Owl Carousel</a></li>
-                                <li><a class="nav-link" href="modules-sparkline.html">Sparkline</a></li>
-                                <li><a class="nav-link" href="modules-sweet-alert.html">Sweet Alert</a></li>
-                                <li><a class="nav-link" href="modules-toastr.html">Toastr</a></li>
-                                <li><a class="nav-link" href="modules-vector-map.html">Vector Map</a></li>
-                                <li><a class="nav-link" href="modules-weather-icon.html">Weather Icon</a></li>
-                            </ul>
-                        </li>
-
                     </ul>
-
-                    <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-                        <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
-                            <i class="fas fa-rocket"></i> Documentation
-                        </a>
-                    </div>
                 </aside>
             </div>
 

@@ -55,10 +55,10 @@
 
     <div class="container">
       <div class="form-outer">
-        <form action="#">
+      <form method="POST" action="{{ route('create.request.store') }}" id="form">
+       @csrf
           <div class="page slide-page">
             <div class="row">
-
               <div class="col-12 col-md-12 col-lg-12">
                 <div class="card">
                   <div class="card-header">
@@ -390,11 +390,8 @@
                 <div class="card-footer text-right">
                   <p class="btn btn-primary prev-3 prev">Previous </p>
                   <button class="btn btn-primary">Créer </button>
-
                 </div>
               </div>
-
-
             </div>
 
           </div>

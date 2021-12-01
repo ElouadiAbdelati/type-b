@@ -19,18 +19,21 @@ use App\Models\ManifestationEtablissement;
 use App\Models\NatureContribution;
 use App\Models\SoutienSollicite;
 use App\Models\TypeContributeur;
+use App\Services\DemandeService;
 use Illuminate\Http\Request;
-
+use PDF;
 class DashboardController extends Controller
 {
-
+    
+    private DemandeService $demandeService ;
+    
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct(DemandeService $demandeService){
+        $this->demandeService  =$demandeService;
     }
 
     /**
@@ -39,10 +42,17 @@ class DashboardController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        return view('user/index');
+    {  
+        $demandes = $this->demandeService->findAll();
+        return view('user/list-request',['demandes'=>$demandes]);
     }
 
+    public function generatePDF(Request $request)
+    {   
+        $demande = $this->demandeService->findById($request->route('id'));
+        $pdf = PDF::loadView('user/pdf', compact('demande'));
+        return $pdf->stream("invoice.pdf",array("Attachment" => false));
+    }
 
     public function createRequest(Request $request)
     {
@@ -139,6 +149,7 @@ class DashboardController extends Controller
                 }
            }
 
+            return redirect()->route('dashboard.user');
         }
 
         return view('user/create-request', ["natureContributions" => $natureContributions, "typeContributeurs" => $typeContributeurs, "etablissements" => $etablissements, 'user' => $user, 'fraisCouvert' => $fraisCouvert]);
